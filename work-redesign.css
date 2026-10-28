@@ -1,0 +1,392 @@
+
+/* ======================================================
+   SANSKRUTI DHAMAL — WORK SECTION REDESIGN
+   Dark editorial layout inspired by the reference image
+   ====================================================== */
+
+body {
+  background: #171717;
+  color: #f5f5f5;
+}
+
+.nav,
+.nav-wrapper,
+.view-section {
+  background: #171717;
+}
+
+.nav-brand {
+  color: #f5f5f5;
+}
+
+.nav-brand--active {
+  background: #f5f5f5;
+  color: #111;
+}
+
+/* Main split layout */
+#view-work .editorial-work-container {
+  display: grid;
+  grid-template-columns: minmax(265px, 23%) minmax(0, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: none;
+  height: calc(100svh - 76px);
+  padding: 10px 12px 14px;
+  margin: 0;
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+/* LEFT: project index */
+#view-work .work-index-pane {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+}
+
+#view-work .work-index-meta-strip {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  margin-bottom: 7px;
+  border: 0;
+}
+
+#view-work .index-meta-count {
+  padding: 6px 10px;
+  border-radius: 7px;
+  background: #292929;
+  color: #f5f5f5;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+#view-work .index-meta-hint {
+  display: none;
+}
+
+#view-work .work-index-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  gap: 8px;
+  overflow-y: auto;
+  padding: 0 0 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #444 transparent;
+}
+
+#view-work .work-index-item,
+#view-work .work-index-item--selected,
+#view-work .work-index-item--selected:hover {
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+  padding: 13px 10px;
+  gap: 10px;
+  background: #050505;
+  border: 1px solid #151515;
+  border-radius: 10px;
+  box-shadow: none;
+  opacity: 1;
+  transform: none;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+#view-work .work-index-item:hover {
+  background: #111;
+  border-color: #292929;
+}
+
+#view-work .work-index-item--selected {
+  background: #101010;
+  border-color: #303030;
+}
+
+#view-work .wii-left {
+  display: none;
+}
+
+#view-work .wii-body {
+  flex: 1;
+  min-width: 0;
+}
+
+#view-work .wii-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+#view-work .wii-org {
+  color: #858585;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+#view-work .wii-cat-pill {
+  display: none;
+}
+
+#view-work .wii-title {
+  margin: 0 0 4px;
+  color: #f4f4f4;
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+#view-work .wii-sub {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #858585;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+#view-work .wii-right {
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+#view-work .wii-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 5px;
+  background: #303030;
+  color: #f5f5f5;
+  font-size: 13px;
+}
+
+#view-work .wii-date {
+  display: none;
+}
+
+/* RIGHT: selected project panel */
+#view-work .work-stage-pane {
+  position: relative;
+  top: auto;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+#view-work .stage-sticky-card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 24px 22px 28px;
+  border: 1px solid #242424;
+  border-radius: 11px;
+  background: #030303;
+  color: #f5f5f5;
+  box-shadow: none;
+  animation: workPanelIn .22s ease-out both;
+}
+
+@keyframes workPanelIn {
+  from {
+    opacity: .7;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#view-work .stage-accent-bar {
+  display: none;
+}
+
+#view-work .stage-header {
+  display: block;
+}
+
+#view-work .stage-tagline {
+  display: none;
+}
+
+#view-work .stage-org {
+  margin-bottom: 8px;
+  color: #858585;
+  font-size: 13px;
+}
+
+#view-work .stage-title {
+  max-width: 1050px;
+  margin: 14px 0 24px;
+  color: #f7f7f7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.15vw, 49px);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -.055em;
+}
+
+#view-work .stage-summary {
+  max-width: 980px;
+  margin: 0 0 20px;
+  color: #d2d2d2;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.45;
+}
+
+#view-work .stage-status-badge {
+  border: 1px solid #333;
+  background: #111;
+  color: #aaa;
+}
+
+/* Infographics and project artefacts */
+#view-work .stage-artefact-slot {
+  min-width: 0;
+  margin: 0;
+}
+
+#view-work .artefact-canvas {
+  overflow: hidden;
+  border: 1px solid #292929;
+  border-radius: 8px;
+  background: #090909;
+  color: #f4f4f4;
+  box-shadow: none;
+}
+
+#view-work .artefact-frame-label {
+  border-color: #292929;
+  color: #999;
+}
+
+#view-work .stage-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid #292929;
+}
+
+#view-work .stage-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+#view-work .stage-tag {
+  border: 1px solid #2c2c2c;
+  border-radius: 5px;
+  background: #171717;
+  color: #aaa;
+}
+
+#view-work .stage-open-btn {
+  border: 0;
+  border-radius: 6px;
+  background: #f5f5f5;
+  color: #111;
+}
+
+#view-work .stage-open-btn:hover {
+  background: #dedede;
+}
+
+/* Project detail modal */
+.work-modal-backdrop {
+  background: rgba(0, 0, 0, .84);
+}
+
+.work-modal-panel {
+  border-color: #292929;
+  background: #101010;
+  color: #f4f4f4;
+}
+
+.wm-editorial-topbar,
+.wm-section-box,
+.wm-quick-facts {
+  border-color: #2b2b2b;
+}
+
+.wm-body-text,
+.wm-deliverables-list {
+  color: #b8b8b8;
+}
+
+/* Tablet and mobile */
+@media (max-width: 850px) {
+  #view-work .editorial-work-container {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    padding: 8px 10px 20px;
+    gap: 12px;
+  }
+
+  #view-work .work-index-pane {
+    max-height: 34svh;
+  }
+
+  #view-work .work-index-list {
+    flex: initial;
+    height: auto;
+    max-height: 34svh;
+  }
+
+  #view-work .work-index-item,
+  #view-work .work-index-item--selected,
+  #view-work .work-index-item--selected:hover {
+    min-height: 76px;
+  }
+
+  #view-work .work-stage-pane {
+    height: auto;
+  }
+
+  #view-work .stage-sticky-card {
+    height: auto;
+    min-height: 0;
+    padding: 20px 16px;
+  }
+
+  #view-work .stage-title {
+    font-size: clamp(29px, 7.5vw, 42px);
+  }
+
+  #view-work .stage-summary {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #view-work .stage-sticky-card {
+    animation: none;
+  }
+
+  #view-work .work-index-item {
+    transition: none;
+  }
+}
