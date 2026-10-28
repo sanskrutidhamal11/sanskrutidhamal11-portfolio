@@ -853,11 +853,12 @@ function updateNavIndicator() {
   });
 }
 
+
 function updateWorkFiltersIndicator() {
   const workFiltersNav = document.getElementById("work-filters");
-  const workNavViewport = workFiltersNav
-    ? workFiltersNav.closest(".nav-viewport")
-    : null;
+  const workNavViewport = document.querySelector(
+    ".works-filter-nav .nav-viewport"
+  );
 
   if (!workFiltersNav || !workNavViewport) return;
 
@@ -865,26 +866,37 @@ function updateWorkFiltersIndicator() {
     `.nav-brand-item[data-filter="${activeFilter}"]`
   );
 
-  const filterIndicator = document.getElementById(
-    "work-filters-active-container"
-  );
-
   if (!activeFilterItem) return;
 
-  const itemLeft = activeFilterItem.offsetLeft;
-  const itemWidth = activeFilterItem.offsetWidth;
+  // Measure the real on-screen positions rather than relying on offsetLeft.
+  const viewportRect = workNavViewport.getBoundingClientRect();
+  const itemRect = activeFilterItem.getBoundingClientRect();
 
-  if (filterIndicator) {
-    filterIndicator.style.transform = `translate(${itemLeft}px, -50%)`;
-    filterIndicator.style.width = `${itemWidth}px`;
+  const viewportCenter = viewportRect.left + viewportRect.width / 2;
+  const itemCenter = itemRect.left + itemRect.width / 2;
+  const correction = viewportCenter - itemCenter;
+
+  // Preserve any existing drag/translation and apply only the correction.
+  const computedTransform = window.getComputedStyle(workFiltersNav).transform;
+  let currentTranslateX = 0;
+
+  if (computedTransform && computedTransform !== "none") {
+    try {
+      currentTranslateX = new DOMMatrixReadOnly(computedTransform).m41;
+    } catch (error) {
+      const match = computedTransform.match(
+        /^matrix\(([^)]+)\)$/
+      );
+      if (match) {
+        currentTranslateX = Number(match[1].split(",")[4]) || 0;
+      }
+    }
   }
 
-  const viewportWidth = workNavViewport.clientWidth;
-  const itemCenter = itemLeft + itemWidth / 2;
-  const targetOffset = viewportWidth / 2 - itemCenter;
-
-  workFiltersNav.style.transform = `translateX(${targetOffset}px)`;
+  workFiltersNav.style.transform =
+    `translateX(${currentTranslateX + correction}px)`;
 }
+
 
 // Drag / Swipe system for ruler navigation
 function makeRulerDraggable(wrapperElement, getItems, onSelectIndex, getCurrentIndex) {
