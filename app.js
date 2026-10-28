@@ -811,32 +811,39 @@ const workFiltersActiveContainer = document.getElementById("work-filters-active-
 // NAVIGATION CONTROLLER & CENTER-LOCK
 // =========================================================
 function updateNavIndicator() {
-  const activeItem = document.querySelector(`.nav-brand-item[data-page="${activePage}"]`);
-  const navContent = document.querySelector(".nav-content");
-  const navViewport = document.querySelector(".nav-viewport");
-  if (!activeItem || !navActiveContainer || !navContent) return;
+  const activeItem = document.querySelector(
+    `#main-nav .nav-brand-item[data-page="${activePage}"]`
+  );
+  const navContent = document.querySelector("#main-nav .nav-content");
+  const navViewport = document.querySelector("#main-nav .nav-viewport");
+  const indicator = document.getElementById("nav-active-container");
 
-  // Position highlight pill over active item
+  if (!activeItem || !navContent || !navViewport) return;
+
   const itemLeft = activeItem.offsetLeft;
   const itemWidth = activeItem.offsetWidth;
 
-  navActiveContainer.style.transform = `translate(${itemLeft}px, -50%)`;
-  navActiveContainer.style.width = `${itemWidth}px`;
-
-  // Align active item precisely at center of nav-viewport (under ruler indicator line)
-  if (navViewport) {
-    const viewportWidth = navViewport.offsetWidth;
-    const itemCenterInContent = itemLeft + itemWidth / 2;
-    const targetOffset = (viewportWidth / 2) - itemCenterInContent;
-    navContent.style.transform = `translateX(${targetOffset}px)`;
+  if (indicator) {
+    indicator.style.transform = `translate(${itemLeft}px, -50%)`;
+    indicator.style.width = `${itemWidth}px`;
   }
+
+  const viewportWidth = navViewport.clientWidth;
+  const itemCenter = itemLeft + itemWidth / 2;
+  const targetOffset = viewportWidth / 2 - itemCenter;
+
+  navContent.style.transform = `translateX(${targetOffset}px)`;
 
   navBrandItems.forEach(item => {
     const isCurrent = item.dataset.page === activePage;
+
     item.classList.toggle("nav-brand-item--active", isCurrent);
+
     const link = item.querySelector(".nav-brand");
+
     if (link) {
       link.classList.toggle("nav-brand--active", isCurrent);
+
       if (isCurrent) {
         link.setAttribute("aria-current", "page");
       } else {
@@ -847,12 +854,22 @@ function updateNavIndicator() {
 }
 
 function updateWorkFiltersIndicator() {
-  const activeFilterItem = document.querySelector(`.nav-brand-item[data-filter="${activeFilter}"]`);
   const workFiltersNav = document.getElementById("work-filters");
-  const workNavViewport = workFiltersNav ? workFiltersNav.closest(".nav-viewport") : null;
-  const filterIndicator = document.getElementById("work-filters-active-container");
+  const workNavViewport = workFiltersNav
+    ? workFiltersNav.closest(".nav-viewport")
+    : null;
 
-  if (!activeFilterItem || !workFiltersNav || !workNavViewport) return;
+  if (!workFiltersNav || !workNavViewport) return;
+
+  const activeFilterItem = workFiltersNav.querySelector(
+    `.nav-brand-item[data-filter="${activeFilter}"]`
+  );
+
+  const filterIndicator = document.getElementById(
+    "work-filters-active-container"
+  );
+
+  if (!activeFilterItem) return;
 
   const itemLeft = activeFilterItem.offsetLeft;
   const itemWidth = activeFilterItem.offsetWidth;
@@ -862,10 +879,10 @@ function updateWorkFiltersIndicator() {
     filterIndicator.style.width = `${itemWidth}px`;
   }
 
-  // Align active subcategory at center
-  const viewportWidth = workNavViewport.offsetWidth;
+  const viewportWidth = workNavViewport.clientWidth;
   const itemCenter = itemLeft + itemWidth / 2;
-  const targetOffset = (viewportWidth / 2) - itemCenter;
+  const targetOffset = viewportWidth / 2 - itemCenter;
+
   workFiltersNav.style.transform = `translateX(${targetOffset}px)`;
 }
 
@@ -1604,7 +1621,7 @@ function initWorkFilters() {
     <div class="active-container" id="work-filters-active-container" aria-hidden="true"></div>
     ${filterDefs.map(f => {
       const isActive = f.id === activeFilter;
-      const markerHtml = f.marker ? `<div class="nav-item-marker" aria-hidden="true">${f.marker}</div>` : '';
+     const markerHtml = "";
       return `
         <div class="nav-brand-item ${isActive ? 'nav-brand-item--active' : ''}" data-filter="${f.id}">
           ${markerHtml}
@@ -1633,9 +1650,11 @@ function renderWorkSection() {
     : works.filter(w => w.cat === activeFilter);
 
   // Update counter
-  if (workIndexCount) {
-    workIndexCount.textContent = `${filtered.length} Entr${filtered.length === 1 ? 'y' : 'ies'}`;
-  }
+  // Hide the entry counter without affecting the project list.
+if (workIndexCount) {
+  workIndexCount.textContent = "";
+  workIndexCount.style.display = "none";
+}
 
   // Ensure selectedWorkId exists in current filtered set
   const exists = filtered.some(w => w.id === selectedWorkId);
