@@ -702,3 +702,59 @@
     transition: none;
   }
 }
+
+
+/* FIX: Remove white panels from the dark Work page */
+#view-work .stage-sticky-card,
+#view-work .artefact-canvas,
+#view-work .matrix-canvas,
+#view-work .kpi-score-strip,
+#view-work .kpi-score-box,
+#view-work .psa-track-cell,
+#view-work .pipeline-node,
+#view-work .roadmap-phase,
+#view-work .funnel-tier {
+  background-color: #0d0d0d !important;
+  color: #ededed !important;
+  border-color: #303030 !important;
+  box-shadow: none;
+}
+
+/* Keep nested infographic elements dark too */
+#view-work .artefact-canvas *,
+#work-modal .artefact-canvas *,
+#work-modal .matrix-canvas,
+#work-modal .kpi-score-strip,
+#work-modal .kpi-score-box,
+#work-modal .psa-track-cell,
+#work-modal .pipeline-node,
+#work-modal .roadmap-phase,
+#work-modal .funnel-tier {
+  border-color: #303030;
+}
+
+#view-work .matrix-canvas,
+#work-modal .matrix-canvas {
+  background: #0d0d0d !important;
+  color: #ededed !important;
+}
+
+#view-work .kpi-score-strip,
+#work-modal .kpi-score-strip {
+  background: #111111 !important;
+  color: #ededed !important;
+}
+
+#view-work .artefact-canvas .psa-track-cell,
+#work-modal .artefact-canvas .psa-track-cell {
+  background: #151515 !important;
+  color: #ededed !important;
+}
+
+/* Prevent common inline white backgrounds from overriding the theme */
+#view-work .artefact-canvas [style*="background"],
+#work-modal .artefact-canvas [style*="background"] {
+  background-color: #111111 !important;
+  color: #ededed !important;
+}
+
