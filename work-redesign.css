@@ -488,3 +488,217 @@
   color: #aaaaaa;
   border-color: #333333;
 }
+
+
+/* =========================================
+   WORK PAGE: REFINED DARK EDITORIAL THEME
+   ========================================= */
+
+/* Remove the entry counter and align the index with the main panel */
+#view-work .work-index-meta-strip {
+  display: none !important;
+}
+
+#view-work .work-index-list {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Category navigation: text only, no initials */
+#view-work .works-filter-nav .nav-item-marker {
+  display: none !important;
+}
+
+#view-work .works-filter-nav .nav-brand-item {
+  gap: 0;
+}
+
+#view-work .works-filter-nav .nav-brand {
+  outline-offset: 3px;
+  border-radius: 999px;
+  padding: 7px 12px;
+  color: #858585;
+  transition: color .2s ease, background .2s ease;
+}
+
+#view-work .works-filter-nav .nav-brand:hover {
+  color: #171717;
+  text-decoration: none;
+}
+
+#view-work .works-filter-nav .nav-brand--active {
+  color: #111 !important;
+  background: #e8e8e8;
+}
+
+/* Remove the old animated pill behind the category labels.
+   The selected label itself becomes the clean indicator. */
+#view-work #work-filters-active-container {
+  display: none !important;
+}
+
+/* Make every project infographic feel like part of the same system */
+#view-work .artefact-canvas {
+  background: #0b0b0b !important;
+  color: #ededed;
+  border: 1px solid #292929;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+#view-work .artefact-frame-label {
+  border-color: #303030;
+  color: #a5a5a5;
+}
+
+#view-work .artefact-frame-label .afl-title {
+  color: #b7b7b7;
+}
+
+#view-work .artefact-frame-label .afl-type {
+  background: #1b1b1b;
+  border: 1px solid #343434;
+  color: #c7c7c7;
+  border-radius: 4px;
+}
+
+/* Replace the bright white curriculum cards */
+#view-work .psa-track-cell {
+  background: #151515 !important;
+  border: 1px solid #303030 !important;
+  color: #ededed;
+  border-radius: 8px;
+}
+
+#view-work .psa-track-num {
+  color: #b7b7b7 !important;
+}
+
+#view-work .psa-track-title {
+  color: #f0f0f0 !important;
+}
+
+#view-work .psa-track-metric {
+  color: #929292 !important;
+}
+
+/* Neutralise bright accent colours across Work infographics */
+#view-work .artefact-canvas [style*="background: #fff"],
+#view-work .artefact-canvas [style*="background:#fff"],
+#view-work .artefact-canvas [style*="background: white"],
+#view-work .artefact-canvas [style*="background-color: white"] {
+  background: #151515 !important;
+  color: #ededed !important;
+}
+
+#view-work .artefact-canvas .kpi-score-box,
+#view-work .artefact-canvas .pipeline-node,
+#view-work .artefact-canvas .roadmap-phase,
+#view-work .artefact-canvas .funnel-tier {
+  background-color: #151515;
+  color: #ededed;
+  border-color: #303030;
+}
+
+#view-work .artefact-canvas .psa-track-num,
+#view-work .artefact-canvas .pipeline-node-step,
+#view-work .artefact-canvas .phase-tag {
+  color: #b8b8b8;
+}
+
+#view-work .artefact-canvas .psa-track-title,
+#view-work .artefact-canvas .pipeline-node-name,
+#view-work .artefact-canvas .phase-name,
+#view-work .artefact-canvas .funnel-name {
+  color: #ededed;
+}
+
+#view-work .artefact-canvas .psa-track-metric,
+#view-work .artefact-canvas .funnel-tier small {
+  color: #929292;
+}
+
+/* Keep the expanded case study consistent with the main panel */
+.work-modal-backdrop {
+  background: rgba(0, 0, 0, .88) !important;
+}
+
+.work-modal-panel {
+  --accent-orange: #d0d0d0;
+  --accent-orange-hover: #ffffff;
+  --accent-orange-soft: #202020;
+  --accent-orange-border: #383838;
+  --accent-orange-glow: transparent;
+
+  background: #090909 !important;
+  color: #eeeeee;
+  border: 1px solid #2b2b2b;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .45);
+}
+
+.work-modal-panel .wm-editorial-topbar {
+  background: #090909;
+  border-color: #292929;
+}
+
+.work-modal-panel .wm-bc-root,
+.work-modal-panel .wm-title,
+.work-modal-panel .wm-fact-val {
+  color: #f1f1f1;
+}
+
+.work-modal-panel .wm-bc-cat,
+.work-modal-panel .wm-pill--orange,
+.work-modal-panel .wm-proof-card {
+  color: #d8d8d8;
+}
+
+.work-modal-panel .wm-pill,
+.work-modal-panel .wm-pill--orange {
+  background: #1b1b1b;
+  border: 1px solid #333;
+}
+
+.work-modal-panel .wm-section-box,
+.work-modal-panel .wm-quick-facts,
+.work-modal-panel .wm-artefact-wrapper {
+  background: #0d0d0d;
+  border-color: #292929;
+  color: #e5e5e5;
+}
+
+.work-modal-panel .wm-proof-card {
+  background: #121212;
+  border: 1px solid #303030;
+  border-left: 3px solid #777;
+}
+
+.work-modal-panel .wm-section-heading,
+.work-modal-panel .wm-body-text,
+.work-modal-panel .wm-deliverables-list,
+.work-modal-panel .wm-fact-row,
+.work-modal-panel .wm-artefact-label {
+  color: #b5b5b5;
+  border-color: #303030;
+}
+
+.work-modal-panel .wm-link-cta {
+  color: #eeeeee;
+}
+
+.work-modal-panel .wm-close-button {
+  background: #191919;
+  color: #eeeeee;
+  border-color: #333;
+}
+
+.work-modal-panel .artefact-canvas .psa-track-cell {
+  background: #151515 !important;
+  border-color: #303030 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #view-work .works-filter-nav .nav-brand {
+    transition: none;
+  }
+}
